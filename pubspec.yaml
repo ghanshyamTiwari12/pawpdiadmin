@@ -57,7 +57,7 @@ dependencies:
   firebase_app_check: ^0.2.1+8
   firebase_crashlytics: ^3.4.16
   firebase_analytics: ^10.8.7
-
+  easy_sidemenu: ^0.6.0
   # http: ^0.12.0+4
   # ff_navigation_bar: 0.1.5
 

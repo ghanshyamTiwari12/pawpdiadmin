@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +27,6 @@ Future<void> main() async {
 
   await Firebase.initializeApp(
     options: FirebaseHelper.web(isProductionMode: false),
-
   );
 
   // FlutterError.onError = (errorDetails) {
@@ -68,8 +66,6 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (_) => AppointmentApi()),
       ChangeNotifierProvider(create: (_) => UserSelectionFunction()),
 
-
-
       StreamProvider<User?>.value(
         value: FirebaseAuth.instance.authStateChanges(),
         initialData: null,
@@ -91,42 +87,41 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Sizer(
-      builder: (context, orientation, deviceType){
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            useMaterial3: true,
-            // primarySwatch: Colors.purple,
-            colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.blue,
-              primary: Colors.blue,
-              secondary: Colors.amber,
-              tertiary: Colors.pink,
-            ),
-            textTheme: GoogleFonts.poppinsTextTheme(),
-            inputDecorationTheme: InputDecorationTheme(
-              fillColor: const Color(0xfffafafa),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
+    return Sizer(builder: (context, orientation, deviceType) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+          // primarySwatch: Colors.purple,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.blue,
+            primary: Colors.blue,
+            secondary: Colors.amber,
+            tertiary: Colors.pink,
+          ),
+          textTheme: GoogleFonts.poppinsTextTheme(),
+          inputDecorationTheme: InputDecorationTheme(
+            fillColor: const Color(0xfffafafa),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
             ),
           ),
+        ),
 
-          // routes: <String, WidgetBuilder>{
-          //   '/': (BuildContext context) => WebMainScreen(),
-          //
-          //
-          // },
-          home: const WebLogin() ,
-          routes: {
-            WebLogin.id:(BuildContext context) => const WebLogin(),
-            WebDashboardScreen.id:(BuildContext context) => const WebDashboardScreen(),
-            AllUserScreen.id:(BuildContext context) =>  const AllUserScreen(),
-          },
-        );
-      }
-    );
+        // routes: <String, WidgetBuilder>{
+        //   '/': (BuildContext context) => WebMainScreen(),
+        //
+        //
+        // },
+        home: const WebLogin(),
+        routes: {
+          WebLogin.id: (BuildContext context) => const WebLogin(),
+          WebDashboardScreen.id: (BuildContext context) =>
+              const WebDashboardScreen(),
+          AllUserScreen.id: (BuildContext context) => const AllUserScreen(),
+        },
+      );
+    });
   }
 }
 
@@ -145,12 +140,10 @@ void setUIStyle() {
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.transparent,
-      systemNavigationBarDividerColor: Colors.transparent,
-      systemNavigationBarIconBrightness: Brightness.dark,
-      statusBarIconBrightness: Brightness.dark
-    ),
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarDividerColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark),
   );
-
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class UserSelected extends ChangeNotifier{
-
+class UserSelected extends ChangeNotifier {
   bool _isUserSelected = false;
   bool get isUserSelected => _isUserSelected;
 
@@ -17,7 +16,7 @@ class UserSelected extends ChangeNotifier{
   int _selectedIndex = 0;
   int get selectedIndex => _selectedIndex;
 
-  selectedItem(int selectIndex){
+  selectedItem(int selectIndex) {
     _selectedIndex = selectIndex;
     notifyListeners();
   }
@@ -27,19 +26,18 @@ class UserSelected extends ChangeNotifier{
     notifyListeners();
   }
 
-  professionalSelected(bool isSelected){
+  professionalSelected(bool isSelected) {
     _isProfessionalSelected = isSelected;
     notifyListeners();
-
   }
 
-  selectedUserId(String userId){
+  selectedUserId(String userId) {
     _userID = userId;
     notifyListeners();
   }
 
-  selectedUserName(String userName){
-    _userName= userName;
+  selectedUserName(String userName) {
+    _userName = userName;
     notifyListeners();
   }
 }

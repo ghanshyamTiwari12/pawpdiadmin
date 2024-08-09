@@ -5,29 +5,23 @@ import 'package:provider/provider.dart';
 import '../Web Api/user_selected_provider.dart';
 import 'colors.dart';
 
-class UserCard{
-
-  static Widget userListCard
-      (
-      context,
-      String uid,
-      String name,
-      String address,
-      String imageUrl,
-    VoidCallback? callback,
-      {String email= '', String phone = ''}
-      )
-  {
+class UserCard {
+  static Widget userListCard(context, String uid, String name, String address,
+      String imageUrl, VoidCallback? callback,
+      {String email = '', String phone = ''}) {
     UserSelected userSelected = Provider.of<UserSelected>(context);
-   String _userID = userSelected.userID;
+    String _userID = userSelected.userID;
     return InkWell(
       onTap: callback,
       splashColor: AppColor.orange,
       child: Padding(
-        padding: const EdgeInsets.only(left: 20.0,
-            right: 20.0, bottom: 10.0),
+        padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 10.0),
         child: Card(
-          color: _userID == uid ? Colors.black38 : AppColor.orange,
+          elevation: 10,
+          shape: BeveledRectangleBorder(
+              side: const BorderSide(color: Colors.orange, width: 0.6),
+              borderRadius: BorderRadiusDirectional.circular(10)),
+          color: AppColor.whiteColor,
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
@@ -41,39 +35,52 @@ class UserCard{
                         children: [
                           Row(
                             children: [
-                              ShowText.detailsText("Name:", fontWeight: FontWeight.bold,),
-                              const SizedBox(width: 3,),
+                              ShowText.detailsText("Name: ",
+                                  fontWeight: FontWeight.bold, fontSize: 10),
+                              const SizedBox(
+                                width: 2,
+                              ),
                               Expanded(
-                                child: ShowText.detailsText(name),
+                                child: ShowText.detailsText(name,
+                                    color: AppColor.whiteColor),
                               ),
                               CircleAvatar(
-                                backgroundImage: NetworkImage(imageUrl.toString()),
+                                backgroundImage:
+                                    NetworkImage(imageUrl.toString()),
                                 radius: 20,
                               ),
                             ],
                           ),
-                          const SizedBox(height: 5,),
-                          email.isEmpty ? Row(
-                            children: [
-                              ShowText.detailsText("Contact No: ", fontWeight: FontWeight.bold,),
-                              ShowText.detailsText(phone),
-                            ],
-                          ) :
-                          Row(
-                            children: [
-                              ShowText.detailsText("Email: ", fontWeight: FontWeight.bold,),
-                              Expanded(
-                                child: ShowText.detailsText(email),
-                              ),
-                            ],
+                          const SizedBox(
+                            height: 2,
                           ),
-                          const SizedBox(height: 5,),
+                          email.isEmpty
+                              ? Row(
+                                  children: [
+                                    ShowText.detailsText("Contact No: ",
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10),
+                                    ShowText.detailsText(phone),
+                                  ],
+                                )
+                              : Row(
+                                  children: [
+                                    ShowText.detailsText("Email: ",
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10),
+                                    Expanded(
+                                      child: ShowText.detailsText(email),
+                                    ),
+                                  ],
+                                ),
+                          const SizedBox(
+                            height: 2,
+                          ),
                           Row(
                             children: [
-                              ShowText.detailsText("Address: ", fontWeight: FontWeight.bold,),
-                              Expanded(
-                                  child: ShowText.detailsText(address)
-                              ),
+                              ShowText.detailsText("Address: ",
+                                  fontWeight: FontWeight.bold, fontSize: 10),
+                              Expanded(child: ShowText.detailsText(address)),
                             ],
                           )
                         ],
@@ -81,26 +88,21 @@ class UserCard{
                     ),
                   ],
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
               ],
             ),
           ),
         ),
       ),
     );
-
   }
 
-  static Widget deletedUserCard(
-      String name,
-      String address,
-      String reason,
-      {String email= '', String phone = ''}
-
-      ){
+  static Widget deletedUserCard(String name, String address, String reason,
+      {String email = '', String phone = ''}) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0,
-          right: 20.0, bottom: 10.0),
+      padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 10.0),
       child: Card(
         color: AppColor.orange,
         child: Padding(
@@ -116,44 +118,64 @@ class UserCard{
                       children: [
                         Row(
                           children: [
-                            ShowText.detailsText("Name:", fontWeight: FontWeight.bold,),
-                            const SizedBox(width: 3,),
+                            ShowText.detailsText(
+                              "Name:",
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const SizedBox(
+                              width: 3,
+                            ),
                             Expanded(
                               child: ShowText.detailsText(name),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 5,),
+                        const SizedBox(
+                          height: 5,
+                        ),
                         Row(
                           children: [
-                            ShowText.detailsText("Address: ", fontWeight: FontWeight.bold,),
-                            Expanded(
-                                child: ShowText.detailsText(address)
+                            ShowText.detailsText(
+                              "Address: ",
+                              fontWeight: FontWeight.bold,
                             ),
+                            Expanded(child: ShowText.detailsText(address)),
                           ],
                         ),
-                        const SizedBox(height: 5,),
-                        email.isEmpty ? Row(
-                          children: [
-                            ShowText.detailsText("Contact No: ", fontWeight: FontWeight.bold,),
-                            ShowText.detailsText(phone),
-                          ],
-                        ) :
-                        Row(
-                          children: [
-                            ShowText.detailsText("Email: ", fontWeight: FontWeight.bold,),
-                            Expanded(
-                              child: ShowText.detailsText(email),
-                            ),
-                          ],
+                        const SizedBox(
+                          height: 5,
                         ),
-                        const SizedBox(height: 5,),
+                        email.isEmpty
+                            ? Row(
+                                children: [
+                                  ShowText.detailsText(
+                                    "Contact No: ",
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  ShowText.detailsText(phone),
+                                ],
+                              )
+                            : Row(
+                                children: [
+                                  ShowText.detailsText(
+                                    "Email: ",
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  Expanded(
+                                    child: ShowText.detailsText(email),
+                                  ),
+                                ],
+                              ),
+                        const SizedBox(
+                          height: 5,
+                        ),
                         Row(
                           children: [
-                            ShowText.detailsText("Reason: ", fontWeight: FontWeight.bold,),
-                            Expanded(
-                                child: ShowText.detailsText(reason)
+                            ShowText.detailsText(
+                              "Reason: ",
+                              fontWeight: FontWeight.bold,
                             ),
+                            Expanded(child: ShowText.detailsText(reason)),
                           ],
                         ),
                       ],
@@ -161,12 +183,13 @@ class UserCard{
                   ),
                 ],
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
             ],
           ),
         ),
       ),
     );
-
   }
 }
